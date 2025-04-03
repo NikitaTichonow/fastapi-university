@@ -5,7 +5,6 @@ from fastapi.routing import APIRouter
 
 from api.handlers import user_router
 
-#
 app = FastAPI(title="fastapi-university")
 
 main_api_router = APIRouter()
