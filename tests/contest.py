@@ -28,21 +28,21 @@ def event_loop():
     loop.close()
 
 
-@pytest.fixture(scope="session", autouse=True) # migrate for test_database
+@pytest.fixture(scope="session", autouse=True)  # migrate for test_database
 async def run_migrations():
     os.system("alembic init migrations")
     os.system('alembic revision --autogenerate -m "test running migrations"')
     os.system("alembic upgrade heads")
 
 
-@pytest.fixture(scope="session") # create test async session
+@pytest.fixture(scope="session")  # create test async session
 async def async_session_test():
     engine = create_async_engine(settings.TEST_DATABASE_URL, future=True, echo=True)
     async_session = sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
     yield async_session
 
 
-@pytest.fixture(scope="function", autouse=True) # clean table
+@pytest.fixture(scope="function", autouse=True)  # clean table
 async def clean_tables(async_session_test):
     """Clean data in all tables before running test function"""
     async with async_session_test() as session:
@@ -56,6 +56,7 @@ async def _get_test_db():
         yield test_async_session()
     finally:
         pass
+
 
 @pytest.fixture(scope="function")
 async def client() -> AsyncGenerator[TestClient, Any, None]:

@@ -5,12 +5,11 @@ from db.models import User
 
 class UserDAL:
     """Data Acces Layer for operating user info"""
+
     def __init__(self, db_session: AsyncSession):
         self.db_session = db_session
 
-    async def create_user(
-            self, name: str, surname: str, email: str
-    ) -> User:
+    async def create_user(self, name: str, surname: str, email: str) -> User:
         new_user = User(
             name=name,
             surname=surname,
