@@ -1,5 +1,6 @@
 import re
 import uuid
+from uuid import UUID
 
 from fastapi import HTTPException
 from pydantic import BaseModel, EmailStr, field_validator
@@ -38,3 +39,8 @@ class ShowUser(TunedModel):
     surname: str
     email: EmailStr
     is_active: bool
+
+
+class DeleteUserResponce(BaseModel):
+    deleted_user_id: uuid.UUID
+
