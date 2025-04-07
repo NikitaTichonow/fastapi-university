@@ -1,3 +1,11 @@
+help:  ## Показать доступные команды
+	@echo "Доступные команды:"
+	@echo "  make run            - Запустить сервер разработки"
+	@echo "  make up-heads       - Применить миграции"
+	@echo "  make up 			 - Запустить database через docker"
+	@echo "  make down           - Удалить database через docker"
+	@echo "  make black          - Запустить black"
+
 run:
 	uvicorn main:app --reload
 
